@@ -1,4 +1,3 @@
-import { channel } from 'diagnostics_channel'
 import {
     ApplicationCommandOptionType,
     BaseGuildVoiceChannel,
@@ -12,7 +11,7 @@ import { Discord, Slash, SlashOption } from 'discordx'
 export class Move {
     @Slash({
         description:
-            'move everyone from the channel you are in to another channel',
+            'Move everyone to another voice channel',
         name: 'move',
         dmPermission: false,
     })

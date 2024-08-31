@@ -5,13 +5,15 @@ import { Discord, On } from 'discordx'
 export class VCPacther {
     @On({ event: 'voiceStateUpdate' })
     async vcPacther([oldState, newState]: ArgsOf<'voiceStateUpdate'>) {
-        // Voice Channel Patcher: When a user is moved into a VC they dont have perms in they are granted access to the Text chat without history.
+        // Voice Channel Patcher: When a user is moved into a VC they lack perms in they are granted access to the text chat without history.
 
         const member = oldState.member
         const channelTo = newState.channel
         const channelFrom = oldState.channel
 
-        if (!member || channelFrom === channelTo) return
+        if (!member) return
+        if (member.user.bot) return
+        if (channelFrom === channelTo) return
 
         if (channelTo)
             await (async () => {

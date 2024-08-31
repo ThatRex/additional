@@ -24,10 +24,10 @@ const getRegionName = async (client: Client, id: string | null) => {
 }
 
 @Discord()
-@SlashGroup({ description: 'manage voice channel region', name: 'region' })
+@SlashGroup({ description: 'Manage voice channel region', name: 'region' })
 @SlashGroup('region')
 export class Region {
-    @Slash({ description: 'set voice channel region' })
+    @Slash({ description: 'Set voice channel region' })
     async set(
         @SlashOption({
             autocomplete: autocompleteRegion,
@@ -77,7 +77,7 @@ export class Region {
         await interaction.editReply({ content: `**Region Set:** ${name}` })
     }
 
-    @Slash({ description: 'get voice channel region' })
+    @Slash({ description: 'Get voice channel region' })
     async get(interaction: CommandInteraction) {
         await interaction.deferReply({ ephemeral: true })
 

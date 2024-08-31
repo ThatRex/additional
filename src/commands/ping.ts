@@ -3,7 +3,7 @@ import { Discord, Slash } from 'discordx'
 
 @Discord()
 export class Ping {
-    @Slash({ description: 'ping' })
+    @Slash({ description: 'Check if I am alive' })
     ping(interaction: CommandInteraction) {
         interaction.reply({
             content: 'Pong',
