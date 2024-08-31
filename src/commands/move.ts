@@ -19,7 +19,7 @@ export class Move {
     async move(
         @SlashOption({
             description: 'voice channel to move to',
-            name: 'voice-channe',
+            name: 'voice-channel',
             required: true,
             type: ApplicationCommandOptionType.Channel,
             channelTypes: [ChannelType.GuildVoice],
