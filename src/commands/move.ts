@@ -1,3 +1,4 @@
+import { channel } from 'diagnostics_channel'
 import {
     ApplicationCommandOptionType,
     BaseGuildVoiceChannel,
@@ -49,12 +50,12 @@ export class Move {
 
         await Promise.all(
             Array.from(channelFrom.members.values()).map((member) =>
-                member.voice.setChannel(channelTo)
+                member.voice.setChannel(channelTo, `Moved by ${interaction.member?.user.username || interaction.member}.`)
             )
         )
 
         await interaction.editReply(
-            `Moved members from ${channelFrom} to ${channelTo}`
+            `Moved members from ${channelFrom} to ${channelTo}.`
         )
     }
 }

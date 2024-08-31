@@ -3,6 +3,7 @@ import {
     AutocompleteInteraction,
     Client,
     CommandInteraction,
+    DiscordAPIError,
     GuildMember,
 } from 'discord.js'
 import { Discord, Slash, SlashGroup, SlashOption } from 'discordx'
@@ -55,7 +56,22 @@ export class Region {
             throw Error("Sorry, you don't have permession to do that.")
 
         const rtcRegion = id === 'automatic' ? null : id
-        await channel.setRTCRegion(rtcRegion)
+
+        try {
+            await channel.setRTCRegion(
+                rtcRegion,
+                `Set by ${interaction.member?.user.username || interaction.member}.`
+            )
+        } catch (error) {
+            if (error instanceof DiscordAPIError && error.code === 50035) {
+                await interaction.editReply({
+                    content: `Sorry, that is not a valid region.`,
+                })
+                return
+            }
+
+            throw error
+        }
 
         const name = await getRegionName(interaction.client, rtcRegion)
         await interaction.editReply({ content: `**Region Set:** ${name}` })
