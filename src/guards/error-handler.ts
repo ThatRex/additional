@@ -1,4 +1,4 @@
-import { ArgsOf, GuardFunction } from 'discordx'
+import { GuardFunction } from 'discordx'
 import { CommandInteraction, DiscordAPIError } from 'discord.js'
 
 export const ErrorHandler: GuardFunction = async (arg, _, next) => {

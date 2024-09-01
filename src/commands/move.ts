@@ -10,10 +10,8 @@ import { Discord, Slash, SlashOption } from 'discordx'
 @Discord()
 export class Move {
     @Slash({
-        description:
-            'Move everyone to another voice channel',
+        description: 'Move everyone to another voice channel',
         name: 'move',
-        dmPermission: false,
     })
     async move(
         @SlashOption({
@@ -35,7 +33,7 @@ export class Move {
         if (!channelFrom || !channelFrom.isVoiceBased())
             throw Error('You are not in a voice channel.')
         if (channelTo === channelFrom)
-            throw Error(`You cant be moved to a channel you are already in.`)
+            throw Error('You are already in that channel.')
         if (!channelTo.isVoiceBased())
             throw Error('Channel must be a voice channel.')
 
@@ -49,7 +47,10 @@ export class Move {
 
         await Promise.all(
             Array.from(channelFrom.members.values()).map((member) =>
-                member.voice.setChannel(channelTo, `Moved by ${interaction.member?.user.username || interaction.member}.`)
+                member.voice.setChannel(
+                    channelTo,
+                    `Moved by ${member.user.username}.`
+                )
             )
         )
 

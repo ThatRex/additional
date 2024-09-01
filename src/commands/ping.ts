@@ -4,8 +4,8 @@ import { Discord, Slash } from 'discordx'
 @Discord()
 export class Ping {
     @Slash({ description: 'Check if I am alive' })
-    ping(interaction: CommandInteraction) {
-        interaction.reply({
+    async ping(interaction: CommandInteraction) {
+        await interaction.reply({
             content: 'Pong',
             ephemeral: true,
         })

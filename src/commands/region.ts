@@ -2,14 +2,18 @@ import {
     ApplicationCommandOptionType,
     AutocompleteInteraction,
     Client,
+    Collection,
     CommandInteraction,
     DiscordAPIError,
     GuildMember,
+    VoiceRegion,
 } from 'discord.js'
 import { Discord, Slash, SlashGroup, SlashOption } from 'discordx'
 
+let regions: Collection<string, VoiceRegion>
+
 const autocompleteRegion = async (i: AutocompleteInteraction) => {
-    const regions = await i.client.fetchVoiceRegions()
+    regions = regions ?? (await i.client.fetchVoiceRegions())
     const options = regions.map(({ name, id }) => ({
         name,
         value: id,
@@ -18,7 +22,7 @@ const autocompleteRegion = async (i: AutocompleteInteraction) => {
 }
 
 const getRegionName = async (client: Client, id: string | null) => {
-    const regions = await client.fetchVoiceRegions()
+    regions = regions ?? (await client.fetchVoiceRegions())
     const name = regions.find((r) => r.id === id)?.name || 'Automatic'
     return name
 }
@@ -60,7 +64,7 @@ export class Region {
         try {
             await channel.setRTCRegion(
                 rtcRegion,
-                `Set by ${interaction.member?.user.username || interaction.member}.`
+                `Set by ${member.user.username}.`
             )
         } catch (error) {
             if (error instanceof DiscordAPIError && error.code === 50035) {
