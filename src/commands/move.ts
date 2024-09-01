@@ -17,7 +17,7 @@ export class Move {
     })
     async move(
         @SlashOption({
-            description: 'Voice channel to move to',
+            description: 'The voice channel to move to',
             name: 'voice-channel',
             required: true,
             type: ApplicationCommandOptionType.Channel,

@@ -31,7 +31,7 @@ export class Region {
     async set(
         @SlashOption({
             autocomplete: autocompleteRegion,
-            description: 'The region override',
+            description: 'The region to set',
             name: 'region',
             required: true,
             type: ApplicationCommandOptionType.String,
