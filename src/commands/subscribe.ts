@@ -5,23 +5,15 @@ import {
     GuildMember,
 } from 'discord.js'
 import { Discord, Slash, SlashOption } from 'discordx'
-import { parsNotificationRoleName } from '../utils/index.js'
+import { autocomplete } from '../autocomplete/notification-role.js'
 
-const autocomplete = (i: AutocompleteInteraction) => {
-    const options = i
-        .guild!.roles.cache.filter((r) => r.name.startsWith('!!'))
-        .map(({ id, name }) => ({
-            name: parsNotificationRoleName(name),
-            value: id,
-        }))
-    i.respond([{ name: 'All', value: 'all' }, ...options])
-}
 @Discord()
 export class Subscribe {
     @Slash({ description: 'Subscribe to notifications' })
     async subscribe(
         @SlashOption({
-            autocomplete,
+            autocomplete: (i) =>
+                autocomplete(i, [{ name: 'All', value: 'all' }]),
             description: 'The the notification role to subscribe to',
             name: 'role',
             required: true,

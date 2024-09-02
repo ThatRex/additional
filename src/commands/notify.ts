@@ -6,24 +6,14 @@ import {
     GuildMember,
 } from 'discord.js'
 import { Discord, Slash, SlashOption } from 'discordx'
-import { parsNotificationRoleName } from '../utils/index.js'
-
-const autocomplete = (i: AutocompleteInteraction) => {
-    const options = i
-        .guild!.roles.cache.filter((r) => r.name.startsWith('!!'))
-        .map(({ id, name }) => ({
-            name: parsNotificationRoleName(name),
-            value: id,
-        }))
-    i.respond(options)
-}
+import { autocomplete } from '../autocomplete/notification-role.js'
 
 @Discord()
 export class Notify {
     @Slash({ description: 'Notify subscribed server members' })
     async notify(
         @SlashOption({
-            autocomplete,
+            autocomplete: (i) => autocomplete(i),
             description: 'The role to notify',
             name: 'role',
             required: true,
