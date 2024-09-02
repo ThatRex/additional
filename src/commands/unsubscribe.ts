@@ -2,15 +2,18 @@ import {
     ApplicationCommandOptionType,
     AutocompleteInteraction,
     CommandInteraction,
-    GuildChannel,
     GuildMember,
 } from 'discord.js'
 import { Discord, Slash, SlashOption } from 'discordx'
+import { parsNotificationRoleName } from '../utils/index.js'
 
 const autocomplete = (i: AutocompleteInteraction) => {
     const options = i
         .guild!.roles.cache.filter((r) => r.name.startsWith('!!'))
-        .map(({ id, name }) => ({ name, value: id }))
+        .map(({ id, name }) => ({
+            name: parsNotificationRoleName(name),
+            value: id,
+        }))
     i.respond([{ name: 'All', value: 'all' }, ...options])
 }
 @Discord()
