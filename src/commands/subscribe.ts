@@ -1,6 +1,5 @@
 import {
     ApplicationCommandOptionType,
-    AutocompleteInteraction,
     CommandInteraction,
     GuildMember,
 } from 'discord.js'

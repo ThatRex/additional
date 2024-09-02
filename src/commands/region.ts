@@ -13,12 +13,19 @@ import { Discord, Slash, SlashGroup, SlashOption } from 'discordx'
 let regions: Collection<string, VoiceRegion>
 
 const autocompleteRegion = async (i: AutocompleteInteraction) => {
+    const val = i.options.getFocused().toLowerCase()
+    const filter = (v: string) => v.includes(val) || val.includes(v)
+
     regions = regions ?? (await i.client.fetchVoiceRegions())
     const options = regions.map(({ name, id }) => ({
         name,
         value: id,
     }))
-    await i.respond([{ name: 'Automatic', value: 'automatic' }, ...options])
+
+    const mixed = [{ name: 'Automatic', value: 'automatic' }, ...options]
+    const filtered = mixed.filter((o) => filter(o.name.toLowerCase()))
+
+    await i.respond(filtered.length ? filtered : mixed)
 }
 
 const getRegionName = async (client: Client, id: string | null) => {

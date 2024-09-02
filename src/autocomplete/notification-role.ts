@@ -13,6 +13,7 @@ export const autocomplete = (
     mixin: ApplicationCommandOptionChoiceData<string>[] = []
 ) => {
     const val = i.options.getFocused().toLowerCase()
+    const filter = (v: string) => v.includes(val) || val.includes(v)
 
     const options = i
         .guild!.roles.cache.filter((r) => r.name.startsWith('!!'))
@@ -22,9 +23,7 @@ export const autocomplete = (
         }))
 
     const mixed = [...mixin, ...options]
+    const filtered = mixed.filter((o) => filter(o.name.toLowerCase()))
 
-    const filter = (v: string) => v.includes(val) || val.includes(v)
-    const filteredOptions = mixed.filter((o) => filter(o.name.toLowerCase()))
-
-    i.respond(filteredOptions.length ? filteredOptions : mixed)
+    i.respond(filtered.length ? filtered : mixed)
 }
