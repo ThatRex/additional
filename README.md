@@ -1,56 +1,52 @@
-<div>
-  <p align="center">
-    <a href="https://discordx.js.org" target="_blank" rel="nofollow">
-      <img src="https://discordx.js.org/discordx.svg" width="546" />
-    </a>
-  </p>
-  <p align="center">
-    <a href="https://discordx.js.org/discord"
-      ><img
-        src="https://img.shields.io/discord/874802018361950248?color=5865F2&logo=discord&logoColor=white"
-        alt="Discord server"
-    /></a>
-    <a href="https://www.npmjs.com/package/discordx"
-      ><img
-        src="https://img.shields.io/npm/v/discordx.svg?maxAge=3600"
-        alt="NPM version"
-    /></a>
-    <a href="https://www.npmjs.com/package/discordx"
-      ><img
-        src="https://img.shields.io/npm/dt/discordx.svg?maxAge=3600"
-        alt="NPM downloads"
-    /></a>
-    <a href="https://github.com/discordx-ts/discordx/actions"
-      ><img
-        src="https://github.com/discordx-ts/discordx/workflows/Build/badge.svg"
-        alt="Build status"
-    /></a>
-    <a href="https://www.paypal.me/vijayxmeena"
-      ><img
-        src="https://img.shields.io/badge/donate-paypal-F96854.svg"
-        alt="paypal"
-    /></a>
-  </p>
-  <p align="center">
-    <b> Create a discord bot with TypeScript and Decorators! </b>
-  </p>
-</div>
+# Additional
 
-# 📖 Introduction
+An out of the way bot with additional commands and a patch for Discord. Created for my private Discord server.
 
-A blank template with one command and one event, This is a useful template if you want to quickly spin up a project.
+## Commands: General
+
+> **/ping**  
+> Check if I am alive
+
+## Commands: Voice
+
+Members with move member perms can bulk move and set voice channel region.
+
+> **/move \<voice-channel\>**  
+> Move everyone to another voice channel  
+> _Move Members_
+
+> **/region get**  
+> Get voice channel region
+
+> **/region set \<region\>**  
+> Set voice channel region  
+> _Move Members_
+
+## Commands: Notification
+
+Notification roles can be created by prefixing a role names with `!!` like `!!chill`. The **/notify** command may be used by member with a role named `@notifier`.
+
+> **/notify \<role\> [message]**  
+> Notify subscribed server members  
+> _@notifier, Mention Everyone_
+
+> **/subscribe \<role\>**  
+> Subscribe to notifications
+
+> **/unsubscribe \<role\>**  
+> Unsubscribe to notifications
+
+## Patch: Voice Channel Chat
+
+This bot grants members who enter a voice channel without sufficient permissions access to the text chat without viewing message history. This is achieved by adding channel permission overrides when users join the voice channel, then removing them when they leave.
+
+---
 
 # 🏗 Development
 
 ```
 npm install
 npm run dev
-```
-
-If you want to use [Nodemon](https://nodemon.io/) to auto-reload while in development:
-
-```
-npm run watch
 ```
 
 # 💻 Production
@@ -83,17 +79,6 @@ docker-compose logs
 
 For the full command list please view the [Docker Documentation](https://docs.docker.com/engine/reference/commandline/cli/).
 
-# 📜 Documentation
+---
 
-- [discordx.js.org](https://discordx.js.org)
-- [Tutorials (dev.to)](https://dev.to/samarmeena/series/14317)
-
-# ☎️ Need help?
-
-- [Check frequently asked questions](https://discordx.js.org/docs/faq)
-- [Check examples](https://github.com/discordx-ts/discordx/tree/main/packages/discordx/examples)
-- Ask in the community [Discord server](https://discordx.js.org/discord)
-
-# 💖 Thank you
-
-You can support [discordx](https://www.npmjs.com/package/discordx) by giving it a [GitHub](https://github.com/discordx-ts/discordx) star.
+This bot is built with [disccordx](https://discordx.js.org). You can support [discordx](https://www.pnpmjs.com/package/discordx) by giving it a [GitHub](https://github.com/discordx-ts/discordx) star.
