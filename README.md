@@ -34,7 +34,7 @@ Notification roles can be created by prefixing a role names with `!!` like `!!ch
 > Subscribe to notifications
 
 > **/unsubscribe \<role\>**  
-> Unsubscribe to notifications
+> Unsubscribe from notifications
 
 ## Patch: Voice Channel Chat
 
