@@ -1,8 +1,8 @@
 # Additional
 
-An out of the way bot with additional commands and a patch for Discord. Created for my private Discord server.
+An out of the way bot with additional commands and a patch for Discord. Created for my private Discord server. [Public Invite](https://discord.com/oauth2/authorize?client_id=1161858372631527444). _Uptime not guaranteed._
 
-## Commands: General
+# Commands: General
 
 > **/ping**  
 > Check if I am alive
@@ -24,7 +24,7 @@ Members with move member perms can bulk move and set voice channel region.
 
 ## Commands: Notification
 
-Notification roles can be created by prefixing a role names with `!!` like `!!chill`. The **/notify** command may be used by member with a role named `@notifier`.
+Notification roles can be created by prefixing a role name with **!!** like **!!chill**. The **/notify** command may be used by members with a role named **@notifier**.
 
 > **/notify \<role\> [message]**  
 > Notify subscribed server members  
@@ -38,18 +38,18 @@ Notification roles can be created by prefixing a role names with `!!` like `!!ch
 
 ## Patch: Voice Channel Chat
 
-This bot grants members who enter a voice channel without sufficient permissions access to the text chat without viewing message history. This is achieved by adding channel permission overrides when users join the voice channel, then removing them when they leave.
+This bot grants members who enter a voice channel without sufficient permissions access to the text chat without viewing message history. This is achieved by adding channel permission overrides when a member joins a voice channel, then removing them when they leave.
 
 ---
 
-# 🏗 Development
+## Development
 
 ```
 npm install
 npm run dev
 ```
 
-# 💻 Production
+## Production
 
 ```
 npm install --production
@@ -57,7 +57,7 @@ npm run build
 npm run start
 ```
 
-# 🐋 Docker
+## Docker
 
 To start your application:
 
