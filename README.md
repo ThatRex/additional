@@ -1,8 +1,9 @@
 # Additional
 
-An out of the way bot with additional commands and a patch for Discord. Created for my private Discord server. [Public Invite](https://discord.com/oauth2/authorize?client_id=1161858372631527444). _Uptime not guaranteed._
+An out of the way app with additional commands and a patch for Discord.  
+[**Public Invite**](https://discord.com/oauth2/authorize?client_id=1161858372631527444). Uptime not guaranteed.
 
-# Commands: General
+## Commands: General
 
 > **/ping**  
 > Check if I am alive
