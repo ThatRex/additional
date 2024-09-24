@@ -45,12 +45,10 @@ export class Move {
         if (!hasPerms)
             throw Error("Sorry, you don't have permession to do that.")
 
+        const username = member.user.username
         await Promise.all(
             Array.from(channelFrom.members.values()).map((member) =>
-                member.voice.setChannel(
-                    channelTo,
-                    `Moved by ${member.user.username}.`
-                )
+                member.voice.setChannel(channelTo, `Moved by ${username}.`)
             )
         )
 
