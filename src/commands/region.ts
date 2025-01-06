@@ -55,6 +55,7 @@ export class Region {
 
         const channel = interaction.channel
         const member = interaction.member as GuildMember
+        const user = member.user
 
         if (!channel || !channel.isVoiceBased())
             throw Error('This command must be run in a voice channel chat.')
@@ -71,7 +72,7 @@ export class Region {
         try {
             await channel.setRTCRegion(
                 rtcRegion,
-                `Set by ${member.user.username}.`
+                `set by ${user.username} (${user.id})`
             )
         } catch (error) {
             if (error instanceof DiscordAPIError && error.code === 50035) {

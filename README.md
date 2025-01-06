@@ -25,7 +25,7 @@ Members with move member perms can bulk move and set voice channel region.
 
 ## Commands: Notification
 
-Notification roles can be created by prefixing a role name with **!!** like **!!chill**. The **/notify** command may be used by members with a role named **@notifier**.
+Notification roles can be created by prefixing a role name with **notification:** or **!!** like **notification:chill** or **!!chill**. The **/notify** command may be used by members with a role named **@notifier**.
 
 > **/notify \<role\> [message]**  
 > Notify subscribed server members  

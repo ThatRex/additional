@@ -5,6 +5,7 @@ import {
 } from 'discord.js'
 import { Discord, Slash, SlashOption } from 'discordx'
 import { autocomplete } from '../autocomplete/notification-role.js'
+import { isNotificationRole } from '../utils/is-notification-role.js'
 
 @Discord()
 export class Subscribe {
@@ -26,7 +27,7 @@ export class Subscribe {
 
         if (id === 'all') {
             interaction
-                .guild!.roles.cache.filter((r) => r.name.startsWith('!!'))
+                .guild!.roles.cache.filter(isNotificationRole)
                 .map((r) =>
                     member.roles.add(r, 'Member subscribed to notifications.')
                 )
@@ -39,7 +40,7 @@ export class Subscribe {
         }
 
         const notificationRole = interaction
-            .guild!.roles.cache.filter((r) => r.name.startsWith('!!'))
+            .guild!.roles.cache.filter(isNotificationRole)
             .find((r) => r.id === id)
 
         if (!notificationRole) {

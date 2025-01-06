@@ -6,6 +6,7 @@ import {
 } from 'discord.js'
 import { Discord, Slash, SlashOption } from 'discordx'
 import { autocomplete } from '../autocomplete/notification-role.js'
+import { regex } from '../regex.js'
 
 @Discord()
 export class Notify {
@@ -48,7 +49,9 @@ export class Notify {
         }
 
         const notificationRole = interaction
-            .guild!.roles.cache.filter((r) => r.name.startsWith('!!'))
+            .guild!.roles.cache.filter((r) =>
+                regex.notificationRolePrefix.test(r.name)
+            )
             .find((r) => r.id === id)
 
         if (!notificationRole) {
@@ -60,7 +63,7 @@ export class Notify {
         }
 
         await interaction.reply({
-            content: `${notificationRole} ${message || 'Notification!'}`,
+            content: `${notificationRole} ${message || 'Ping!'}`,
             allowedMentions: { parse: ['roles'] },
         })
     }

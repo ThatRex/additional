@@ -26,8 +26,9 @@ export class Move {
         interaction: CommandInteraction
     ) {
         await interaction.deferReply({ ephemeral: true })
-
+        
         const member = interaction.member as GuildMember
+        const user = member.user
         const channelFrom = member.voice.channel
 
         if (!channelFrom || !channelFrom.isVoiceBased())
@@ -45,10 +46,12 @@ export class Move {
         if (!hasPerms)
             throw Error("Sorry, you don't have permession to do that.")
 
-        const username = member.user.username
         await Promise.all(
             Array.from(channelFrom.members.values()).map((member) =>
-                member.voice.setChannel(channelTo, `Moved by ${username}.`)
+                member.voice.setChannel(
+                    channelTo,
+                    `moved by ${user.username} (${user.id})`
+                )
             )
         )
 
